@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../static/script/d3.v4.js"></script>
+    <script type="text/javascript" src="../static/script/d3-geo-projection.v2.min.js"></script>
+    <script type="text/javascript" src="../static/script/jquery-3.3.0.js"></script>
+    <script type="text/javascript" src="../static/script/d3.layout.cloud.js"></script>
+    <script type="text/javascript" src="../static/script/DrawRegion.js"></script>
+    <script type="text/javascript" src="../static/script/DrawCandidate.js"></script>
+    <script type="text/javascript" src="../static/script/DrawSchool.js"></script>
+    <script type="text/javascript" src="../static/script/DrawBackground.js"></script>
+    <script type="text/javascript" src="../static/script/DrawProvince.js"></script>
+    <script type="text/javascript" src="../static/script/BasicData.js"></script>
+    <script type="text/javascript" src="../static/script/DrawAge.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/style/stylesheet.css">
+    <script>
+      people={{ people |tojson}};
+      china={{ china |tojson }};
+    </script>
+</head>
+<body>
+<div id="main">
+    <h4>政治职业生涯规划系统</h4>
+    <p id="person_name"></p>
+    <table id="person"></table>
+    <div id="candidate">
+    </div>
+</div>
+<div id="province">
+    <svg id="province_svg"></svg>
+</div>
+<div id="region">
+    <svg id="school"></svg>
+    <svg id="idx_school"></svg>
+    <svg id="region_svg"></svg>
+    <svg id="idx_region"></svg>
+</div>
+<div id="age">
+    <svg id="age_svg"></svg>
+</div>
+<div id="background">
+    <svg id="background_svg"></svg>
+</div>
+<script>
+    var schoolTHUPKU = ["清华大学", "北京大学","中国社会科学院","中国科学院","中国社会科学院研究生院"];
+    var school985 = ["中国人民大学", "北京理工大学", "北京航空航天大学", "中央民族大学", "北京师范大学", "中国农业大学",
+        "天津大学", "南开大学", "复旦大学", "上海交通大学", "同济大学", "华东师范大学", "重庆大学", "四川大学", "电子科技大学", "湖南大学",
+        "国防科技大学", "中南大学", "厦门大学", "中国科学技术大学", "南京大学", "东南大学", "哈尔滨工业大学", "浙江大学", "西安交通大学",
+        "西北农林科技大学", "西北工业大学", "华中科技大学", "武汉大学", "中国海洋大学", "山东大学", "吉林大学", "大连理工大学", "东北大学",
+        "华南理工大学", "中山大学", "兰州大学"];
+    var schoolOverboard = ["日本东北大学","中欧国际工商学院","俄罗斯医学科学院","香港理工大学","加州大学伯克利分校","英国帝国理工学院",
+        "俄罗斯伏龙芝军事学院","奥斯陆大学","日本东京大学"];
+
+    var province = ['北京','上海','天津','重庆','黑龙江','吉林','辽宁','山东','江苏','安徽','浙江','江西',
+        '湖北','湖南','福建','广东','广西','海南','台湾','河南','河北','内蒙古','山西','陕西','四川','贵州','云南',
+        '宁夏','新疆','西藏','青海','甘肃','香港','澳门'];
+    var region = ['汉族', '满族', '蒙古族', '回族', '藏族', '维吾尔族', '苗族', '壮族', '白族', '锡伯族','哈萨克族'];
+
+var current_people_attr = {province:null, age:null, region:null, background:null, school:null};
+var current_people = people;
+
+obj_province = DrawProvince();
+obj_region = DrawRegion();
+obj_age = DrawAge();
+obj_bg = DrawBackground();
+obj_school = DrawSchool();
+obj_people = Drawcandidate();
+obj_province.update();
+obj_age.update();
+obj_region.update();
+obj_school.update();
+obj_bg.update();
+obj_people.update();
+</script>
+</body>
+</html>
